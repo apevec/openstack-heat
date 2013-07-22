@@ -52,10 +52,9 @@ diff --git a/tools/pip-requires b/tools/pip-requires
 index 06795f9..091168c 100644
 --- a/requirements.txt
 +++ b/requirements.txt
-@@ -12,7 +12,7 @@
- # installed using pip, therefore you will need to install the
- # libxml2-dev(el) and libxslt-dev(el) packages.
- 
+@@ -1,6 +1,6 @@
+ d2to1>=0.2.10,<0.3
+ pbr>=0.5.10,<0.6
 -PyCrypto>=2.1.0
 +M2Crypto
  boto>=2.4.0
