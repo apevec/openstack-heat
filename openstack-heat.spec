@@ -8,7 +8,7 @@
 Name:		openstack-heat
 Summary:	OpenStack Orchestration (heat)
 Version:	2013.2
-Release:	0.2.%{release_letter}%{milestone}%{?dist}
+Release:	0.3.%{release_letter}%{milestone}%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		http://www.openstack.org
@@ -113,7 +113,7 @@ Requires: python-keystoneclient
 Requires: python-memcached
 Requires: python-novaclient
 Requires: python-oslo-config
-Requires: python-quantumclient
+Requires: python-neutronclient
 Requires: python-swiftclient
 Requires: python-migrate
 Requires: python-qpid
@@ -319,7 +319,7 @@ Heat client tools accessible from the CLI
 %{_mandir}/man1/heat-watch.1.gz
 
 %changelog
-* Mon Jul 22 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.2.b2
+* Mon Jul 22 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.3.b2
 - rebase to havana-2
 
 * Mon Jun 10 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.2.b1
