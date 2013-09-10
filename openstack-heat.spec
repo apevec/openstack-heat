@@ -51,7 +51,6 @@ BuildRequires: python-migrate
 BuildRequires: python-qpid
 BuildRequires: python-six
 BuildRequires: PyYAML
-BuildRequires: python-sphinx
 BuildRequires: m2crypto
 BuildRequires: python-paramiko
 BuildRequires: python-sphinx10
@@ -136,9 +135,8 @@ Requires: python-iso8601
 Requires: python-kombu
 Requires: python-lxml
 Requires: python-netaddr
-Requires: python-paste-deploy
 Requires: python-cinderclient
-Requires: python-keystoneclient
+Requires: python-keystoneclient >= 0.3.1
 Requires: python-memcached
 Requires: python-novaclient
 Requires: python-oslo-config
