@@ -22,7 +22,7 @@
 
 prog=heat-api-cfn
 exec="/usr/bin/$prog"
-config="/etc/heat/$prog.conf"
+config="/etc/heat/heat.conf"
 pidfile="/var/run/heat/$prog.pid"
 
 [ -e /etc/sysconfig/$prog ] && . /etc/sysconfig/$prog
@@ -33,7 +33,7 @@ start() {
     [ -x $exec ] || exit 5
     [ -f $config ] || exit 6
     echo -n $"Starting $prog: "
-    daemon --user heat --pidfile $pidfile "$exec --config-file $config &>/dev/null & echo \$! > $pidfile"
+    daemon --user heat --pidfile $pidfile "$exec &>/dev/null & echo \$! > $pidfile"
     retval=$?
     echo
     [ $retval -eq 0 ] && touch $lockfile

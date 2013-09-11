@@ -8,7 +8,7 @@
 Name:		openstack-heat
 Summary:	OpenStack Orchestration (heat)
 Version:	2013.2
-Release:	0.5.%{release_letter}%{milestone}%{?dist}
+Release:	0.6.%{release_letter}%{milestone}%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		http://www.openstack.org
@@ -24,6 +24,7 @@ Source5:	openstack-heat-api-cloudwatch.init
 
 
 Patch0: switch-to-using-m2crypto.patch
+Patch1: remove-pbr-runtime-dependency.patch
 # EPEL specific patch, not upstream
 Patch100: heat-newdeps.patch
 
@@ -72,7 +73,11 @@ Requires: %{name}-api-cloudwatch = %{version}-%{release}
 %prep
 %setup -q -n %{full_release}
 %patch0 -p1
+%patch1 -p1
 %patch100 -p1
+
+sed -i s/REDHATHEATVERSION/%{version}/ heat/version.py
+sed -i s/REDHATHEATRELEASE/%{release}/ heat/version.py
 
 # Remove the requirements file so that pbr hooks don't add it
 # to distutils requires_dist config
@@ -151,6 +156,7 @@ Requires: m2crypto
 Requires: python-anyjson
 Requires: python-paramiko
 Requires: python-heatclient
+Requires: python-babel
 
 Requires: python-paste-deploy1.5
 Requires: python-routes1.12
@@ -330,6 +336,11 @@ fi
 
 
 %changelog
+* Wed Sep 11 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.6.b3
+- fix init scripts (rhbz 1006868)
+- added python-babel
+- remove runtime pbr dependency (rhbz 1006911)
+
 * Mon Sep 9 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.5.b3
 - rebase to havana-3
 - remove tests from common
