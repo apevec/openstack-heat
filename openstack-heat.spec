@@ -21,7 +21,7 @@ Source2:	openstack-heat-api.init
 Source3:	openstack-heat-api-cfn.init
 Source4:	openstack-heat-engine.init
 Source5:	openstack-heat-api-cloudwatch.init
-# must stay as #6 for conf updating in %prep
+# must stay as #6 for conf updating in prep
 Source6:    heat-dist.conf
 
 Patch0: switch-to-using-m2crypto.patch
