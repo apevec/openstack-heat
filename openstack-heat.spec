@@ -8,7 +8,7 @@
 Name:		openstack-heat
 Summary:	OpenStack Orchestration (heat)
 Version:	2013.2
-Release:	0.8.%{release_letter}%{milestone}%{?dist}
+Release:	0.9.%{release_letter}%{milestone}%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		http://www.openstack.org
@@ -59,7 +59,7 @@ BuildRequires: python-sphinx10
 BuildRequires: python-paste-deploy1.5
 BuildRequires: python-routes1.12
 BuildRequires: python-sqlalchemy0.7
-BuildRequires: python-webob1.0
+BuildRequires: python-webob1.2
 
 BuildRequires: python-pbr
 BuildRequires: python-d2to1
@@ -193,7 +193,6 @@ Requires: python-neutronclient
 Requires: python-swiftclient
 Requires: python-migrate
 Requires: python-qpid
-Requires: python-webob
 Requires: python-six
 Requires: PyYAML
 Requires: m2crypto
@@ -205,7 +204,7 @@ Requires: python-babel
 Requires: python-paste-deploy1.5
 Requires: python-routes1.12
 Requires: python-sqlalchemy0.7
-Requires: python-webob1.0
+Requires: python-webob1.2
 
 Requires(pre): shadow-utils
 
@@ -381,6 +380,9 @@ fi
 
 
 %changelog
+* Mon Sep 23 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.9.b3
+- changed webob requires to 1.0 -> 1.2
+
 * Thu Sep 19 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.8.b3
 - fix the python-oslo-config dependency to cater for epoch
 - add api-paste-dist.ini to /usr/share/heat
