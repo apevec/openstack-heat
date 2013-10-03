@@ -1,6 +1,6 @@
 %global release_name havana
-%global release_letter b
-%global milestone 3
+%global release_letter rc
+%global milestone 1
 %global full_release heat-%{version}.%{release_letter}%{milestone}
 
 %global with_doc %{!?_without_doc:1}%{?_without_doc:0}
@@ -12,7 +12,7 @@ Release:	0.9.%{release_letter}%{milestone}%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		http://www.openstack.org
-Source0:	https://launchpad.net/heat/%{release_name}/%{release_name}-%{milestone}/+download/%{full_release}.tar.gz
+Source0:	https://launchpad.net/heat/%{release_name}/%{release_name}-%{release_letter}%{milestone}/+download/%{full_release}.tar.gz
 Obsoletes:	heat < 7-9
 Provides:	heat
 
@@ -33,7 +33,6 @@ BuildRequires: git
 BuildRequires: python2-devel
 BuildRequires: python-setuptools
 BuildRequires: python-oslo-sphinx
-BuildRequires: python-oslo-config
 BuildRequires: python-argparse
 BuildRequires: python-eventlet
 BuildRequires: python-greenlet
@@ -42,12 +41,7 @@ BuildRequires: python-iso8601
 BuildRequires: python-kombu
 BuildRequires: python-lxml
 BuildRequires: python-netaddr
-BuildRequires: python-cinderclient
-BuildRequires: python-keystoneclient
 BuildRequires: python-memcached
-BuildRequires: python-novaclient
-BuildRequires: python-neutronclient
-BuildRequires: python-swiftclient
 BuildRequires: python-migrate
 BuildRequires: python-qpid
 BuildRequires: python-six
@@ -63,6 +57,14 @@ BuildRequires: python-webob1.2
 
 BuildRequires: python-pbr
 BuildRequires: python-d2to1
+%if 0%{?with_doc}
+BuildRequires: python-oslo-config
+BuildRequires: python-cinderclient
+BuildRequires: python-keystoneclient
+BuildRequires: python-novaclient
+BuildRequires: python-neutronclient
+BuildRequires: python-swiftclient
+%endif
 
 Requires: %{name}-common = %{version}-%{release}
 Requires: %{name}-engine = %{version}-%{release}
@@ -146,6 +148,7 @@ install -p -D -m 755 %{SOURCE5} %{buildroot}%{_initrddir}/openstack-heat-api-clo
 mkdir -p %{buildroot}/var/lib/heat/
 mkdir -p %{buildroot}/etc/heat/
 
+%if 0%{?with_doc}
 export PYTHONPATH="$( pwd ):$PYTHONPATH"
 pushd doc
 sphinx-1.0-build -b html -d build/doctrees source build/html
@@ -154,6 +157,7 @@ sphinx-1.0-build -b man -d build/doctrees source build/man
 mkdir -p %{buildroot}%{_mandir}/man1
 install -p -D -m 644 build/man/*.1 %{buildroot}%{_mandir}/man1/
 popd
+%endif
 
 rm -rf %{buildroot}/var/lib/heat/.dummy
 rm -f %{buildroot}/usr/bin/cinder-keystone-setup
@@ -228,8 +232,10 @@ Components common to all OpenStack Heat services
 %config(noreplace) %attr(-, root, heat) %{_sysconfdir}/heat/policy.json
 %config(noreplace) %attr(-,root,heat) %{_sysconfdir}/heat/environment.d/*
 %config(noreplace) %attr(-,root,heat) %{_sysconfdir}/heat/templates/*
+%if 0%{?with_doc}
 %{_mandir}/man1/heat-db-setup.1.gz
 %{_mandir}/man1/heat-keystone-setup.1.gz
+%endif
 
 %pre common
 # 187:187 for heat - rhbz#845078
@@ -254,10 +260,15 @@ Requires(postun): initscripts
 OpenStack API for starting CloudFormation templates on OpenStack
 
 %files engine
-%doc README.rst LICENSE doc/build/html/man/heat-engine.html
+%doc README.rst LICENSE
+%if 0%{?with_doc}
+%doc doc/build/html/man/heat-engine.html
+%endif
 %{_bindir}/heat-engine
 %{_initrddir}/openstack-heat-engine
+%if 0%{?with_doc}
 %{_mandir}/man1/heat-engine.1.gz
+%endif
 
 %post engine
 /sbin/chkconfig --add openstack-heat-engine
@@ -289,10 +300,15 @@ Requires(postun): initscripts
 OpenStack-native ReST API to the Heat Engine
 
 %files api
-%doc README.rst LICENSE doc/build/html/man/heat-api.html
+%doc README.rst LICENSE
+%if 0%{?with_doc}
+%doc doc/build/html/man/heat-api.html
+%endif
 %{_bindir}/heat-api
 %{_initrddir}/openstack-heat-api
+%if 0%{?with_doc}
 %{_mandir}/man1/heat-api.1.gz
+%endif
 
 %post api
 /sbin/chkconfig --add openstack-heat-api
@@ -324,10 +340,15 @@ Requires(postun): initscripts
 AWS CloudFormation-compatible API to the Heat Engine
 
 %files api-cfn
-%doc README.rst LICENSE doc/build/html/man/heat-api-cfn.html
+%doc README.rst LICENSE
+%if 0%{?with_doc}
+%doc doc/build/html/man/heat-api-cfn.html
+%endif
 %{_bindir}/heat-api-cfn
 %{_initrddir}/openstack-heat-api-cfn
+%if 0%{?with_doc}
 %{_mandir}/man1/heat-api-cfn.1.gz
+%endif
 
 %post api-cfn
 /sbin/chkconfig --add openstack-heat-api-cfn
@@ -359,10 +380,15 @@ Requires(postun): initscripts
 AWS CloudWatch-compatible API to the Heat Engine
 
 %files api-cloudwatch
-%doc README.rst LICENSE doc/build/html/man/heat-api-cloudwatch.html
+%doc README.rst LICENSE
+%if 0%{?with_doc}
+%doc doc/build/html/man/heat-api-cloudwatch.html
+%endif
 %{_bindir}/heat-api-cloudwatch
 %{_initrddir}/openstack-heat-api-cloudwatch
+%if 0%{?with_doc}
 %{_mandir}/man1/heat-api-cloudwatch.1.gz
+%endif
 
 %post api-cloudwatch
 /sbin/chkconfig --add openstack-heat-api-cloudwatch
@@ -380,6 +406,10 @@ fi
 
 
 %changelog
+* Thu Oct 3 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.9.rc1
+- update to rc1
+- exclude doc builds if with_doc 0
+
 * Mon Sep 23 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.9.b3
 - changed webob requires to 1.0 -> 1.2
 
