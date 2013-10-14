@@ -1,6 +1,6 @@
 %global release_name havana
 %global release_letter rc
-%global milestone 1
+%global milestone 2
 %global full_release heat-%{version}.%{release_letter}%{milestone}
 
 %global with_doc %{!?_without_doc:1}%{?_without_doc:0}
@@ -406,6 +406,9 @@ fi
 
 
 %changelog
+* Mon Oct 14 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.9.rc2
+- rebase to havana-rc2
+
 * Thu Oct 3 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.9.rc1
 - update to rc1
 - exclude doc builds if with_doc 0
