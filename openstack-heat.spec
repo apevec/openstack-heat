@@ -1,18 +1,18 @@
 %global release_name havana
 %global release_letter rc
 %global milestone 2
-%global full_release heat-%{version}.%{release_letter}%{milestone}
+%global full_release heat-%{version}
 
 %global with_doc %{!?_without_doc:1}%{?_without_doc:0}
 
 Name:		openstack-heat
 Summary:	OpenStack Orchestration (heat)
 Version:	2013.2
-Release:	0.9.%{release_letter}%{milestone}%{?dist}
+Release:	1.0%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		http://www.openstack.org
-Source0:	https://launchpad.net/heat/%{release_name}/%{release_name}-%{release_letter}%{milestone}/+download/%{full_release}.tar.gz
+Source0:	https://launchpad.net/heat/%{release_name}/%{version}/+download/heat-%{version}.tar.gz
 Obsoletes:	heat < 7-9
 Provides:	heat
 
@@ -406,6 +406,9 @@ fi
 
 
 %changelog
+* Thu Oct 17 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-1
+- update to havana final
+
 * Mon Oct 14 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-0.9.rc2
 - rebase to havana-rc2
 
