@@ -1,14 +1,17 @@
-From 4510d7e7f427ac4b0770832108641a5048624332 Mon Sep 17 00:00:00 2001
+From d9a13dc6dd06fbfed6ddf63cba6aa9500123b6b9 Mon Sep 17 00:00:00 2001
 From: Jeff Peeler <jpeeler@redhat.com>
 Date: Wed, 8 May 2013 12:27:35 -0400
 Subject: [PATCH] Switch to using M2Crypto
 
 This patch uses M2Crypto instead of PyCrypto to perform encryption
 and decryption of user authentication information.
-
 ---
+ heat/common/crypt.py | 18 +++++++++++-------
+ requirements.txt     |  2 +-
+ 2 files changed, 12 insertions(+), 8 deletions(-)
+
 diff --git a/heat/common/crypt.py b/heat/common/crypt.py
-index 81b4c92..01fa353 100644
+index 81b4c92..2619b31 100644
 --- a/heat/common/crypt.py
 +++ b/heat/common/crypt.py
 @@ -14,7 +14,7 @@
@@ -48,8 +51,8 @@ index 81b4c92..01fa353 100644
 +                                 op=0) # 0 is decode
 +    res = cipher.update(auth[16:]) + cipher.final()
      return res
-diff --git a/tools/pip-requires b/tools/pip-requires
-index 06795f9..091168c 100644
+diff --git a/requirements.txt b/requirements.txt
+index 30400ea..4b2fc3f 100644
 --- a/requirements.txt
 +++ b/requirements.txt
 @@ -1,5 +1,5 @@
@@ -59,6 +62,3 @@ index 06795f9..091168c 100644
  eventlet>=0.13.0
  greenlet>=0.3.2
  httplib2
--- 
-1.8.1.4
-

@@ -23,10 +23,12 @@ Source4:	openstack-heat-engine.init
 Source5:	openstack-heat-api-cloudwatch.init
 Source20:   heat-dist.conf
 
-Patch0: switch-to-using-m2crypto.patch
-Patch1: remove-pbr-runtime-dependency.patch
-# EPEL specific patch, not upstream
-Patch100: heat-newdeps.patch
+#
+# patches_base=2013.2
+#
+Patch0001: 0001-Switch-to-using-M2Crypto.patch
+Patch0002: 0002-remove-pbr-runtime-dependency.patch
+Patch0003: 0003-Fix-dependencies-for-EPEL.patch
 
 BuildArch: noarch
 BuildRequires: git
@@ -74,10 +76,10 @@ Requires: %{name}-api-cloudwatch = %{version}-%{release}
 
 %prep
 %setup -q -n %{full_release}
-%patch0 -p1
-%patch1 -p1
-%patch100 -p1
 
+%patch0001 -p1
+%patch0002 -p1
+%patch0003 -p1
 sed -i s/REDHATHEATVERSION/%{version}/ heat/version.py
 sed -i s/REDHATHEATRELEASE/%{release}/ heat/version.py
 

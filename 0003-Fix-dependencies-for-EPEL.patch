@@ -1,3 +1,12 @@
+From 7fe99bd12f9989f7dbcf2da14ae7f85808be2d80 Mon Sep 17 00:00:00 2001
+From: Jeff Peeler <jpeeler@redhat.com>
+Date: Tue, 2 Apr 2013 18:08:48 -0400
+Subject: [PATCH] Fix dependencies for EPEL
+
+---
+ heat/common/__init__.py | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
 diff --git a/heat/common/__init__.py b/heat/common/__init__.py
 index e8e4035..0db8b7e 100644
 --- a/heat/common/__init__.py
