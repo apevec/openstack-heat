@@ -20,7 +20,7 @@
 
 . /etc/rc.d/init.d/functions
 
-prog=heat-api
+prog=openstack-heat-api
 exec="/usr/bin/$prog"
 config="/etc/heat/heat.conf"
 pidfile="/var/run/heat/$prog.pid"
