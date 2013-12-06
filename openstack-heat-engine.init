@@ -19,7 +19,7 @@
 . /etc/rc.d/init.d/functions
 
 prog=openstack-heat-engine
-exec="/usr/bin/$prog"
+exec="/usr/bin/heat-engine"
 config="/etc/heat/heat.conf"
 pidfile="/var/run/heat/$prog.pid"
 

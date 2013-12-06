@@ -21,7 +21,7 @@
 . /etc/rc.d/init.d/functions
 
 prog=openstack-heat-api-cfn
-exec="/usr/bin/$prog"
+exec="/usr/bin/heat-api-cfn"
 config="/etc/heat/heat.conf"
 pidfile="/var/run/heat/$prog.pid"
 

@@ -19,7 +19,7 @@
 . /etc/rc.d/init.d/functions
 
 prog=openstack-heat-api-cloudwatch
-exec="/usr/bin/$prog"
+exec="/usr/bin/heat-api-cloudwatch"
 config="/etc/heat/heat.conf"
 pidfile="/var/run/heat/$prog.pid"
 
