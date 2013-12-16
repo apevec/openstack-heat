@@ -7,7 +7,7 @@
 
 Name:		openstack-heat
 Summary:	OpenStack Orchestration (heat)
-Version:	2013.2
+Version:	2013.2.1
 Release:	1.0%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
@@ -24,7 +24,7 @@ Source5:	openstack-heat-api-cloudwatch.init
 Source20:   heat-dist.conf
 
 #
-# patches_base=2013.2
+# patches_base=2013.2.1
 #
 Patch0001: 0001-Switch-to-using-M2Crypto.patch
 Patch0002: 0002-remove-pbr-runtime-dependency.patch
@@ -408,6 +408,9 @@ fi
 
 
 %changelog
+* Mon Dec 16 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2.1-1
+- update to 2013.2.1
+
 * Thu Oct 17 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2-1
 - update to havana final
 
