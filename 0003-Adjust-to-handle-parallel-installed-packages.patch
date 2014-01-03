@@ -1,20 +1,20 @@
-From 7fe99bd12f9989f7dbcf2da14ae7f85808be2d80 Mon Sep 17 00:00:00 2001
+From 13867367c67abd9d207aef97a001842899f36b30 Mon Sep 17 00:00:00 2001
 From: Jeff Peeler <jpeeler@redhat.com>
 Date: Tue, 2 Apr 2013 18:08:48 -0400
-Subject: [PATCH] Fix dependencies for EPEL
+Subject: [PATCH] Adjust to handle parallel installed packages
 
 ---
- heat/common/__init__.py | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+ heat/__init__.py |   33 +++++++++++++++++++++++++++++++++
+ 1 files changed, 33 insertions(+), 0 deletions(-)
 
-diff --git a/heat/common/__init__.py b/heat/common/__init__.py
-index e8e4035..0db8b7e 100644
---- a/heat/common/__init__.py
-+++ b/heat/common/__init__.py
-@@ -12,3 +12,36 @@
- #    WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- #    License for the specific language governing permissions and limitations
- #    under the License.
+diff --git a/heat/__init__.py b/heat/__init__.py
+index 57e2d0f..d9df4ce 100644
+--- a/heat/__init__.py
++++ b/heat/__init__.py
+@@ -19,3 +19,36 @@ from heat.openstack.common import gettextutils
+ 
+ 
+ gettextutils.install('heat')
 +
 +import sys
 +import pkg_resources

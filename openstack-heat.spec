@@ -8,7 +8,7 @@
 Name:		openstack-heat
 Summary:	OpenStack Orchestration (heat)
 Version:	2013.2.1
-Release:	1.0%{?dist}
+Release:	2.0%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		http://www.openstack.org
@@ -28,7 +28,7 @@ Source20:   heat-dist.conf
 #
 Patch0001: 0001-Switch-to-using-M2Crypto.patch
 Patch0002: 0002-remove-pbr-runtime-dependency.patch
-Patch0003: 0003-Fix-dependencies-for-EPEL.patch
+Patch0003: 0003-Adjust-to-handle-parallel-installed-packages.patch
 
 BuildArch: noarch
 BuildRequires: git
@@ -408,6 +408,9 @@ fi
 
 
 %changelog
+* Fri Jan 03 2014 Pádraig Brady <pbrady@redhat.com> 2013.2.1-2
+- Fix heat-manage to work with parallel installed packages
+
 * Mon Dec 16 2013 Jeff Peeler <jpeeler@redhat.com> 2013.2.1-1
 - update to 2013.2.1
 
