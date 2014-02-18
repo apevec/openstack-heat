@@ -7,8 +7,8 @@
 
 Name:		openstack-heat
 Summary:	OpenStack Orchestration (heat)
-Version:	2013.2.1
-Release:	2.0%{?dist}
+Version:	2013.2.2
+Release:	1.0%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		http://www.openstack.org
@@ -24,7 +24,7 @@ Source5:	openstack-heat-api-cloudwatch.init
 Source20:   heat-dist.conf
 
 #
-# patches_base=2013.2.1
+# patches_base=2013.2.2
 #
 Patch0001: 0001-Switch-to-using-M2Crypto.patch
 Patch0002: 0002-remove-pbr-runtime-dependency.patch
@@ -408,6 +408,9 @@ fi
 
 
 %changelog
+* Tue Feb 19 2014 Jeff Peeler <jpeeler@redhat.com> 2013.2.2-1
+- update to 2013.2.2
+
 * Fri Jan 03 2014 Pádraig Brady <pbrady@redhat.com> 2013.2.1-2
 - Fix heat-manage to work with parallel installed packages
 
