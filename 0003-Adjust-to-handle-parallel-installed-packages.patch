@@ -4,8 +4,8 @@ Date: Tue, 2 Apr 2013 18:08:48 -0400
 Subject: [PATCH] Adjust to handle parallel installed packages
 
 ---
- heat/__init__.py |   33 +++++++++++++++++++++++++++++++++
- 1 files changed, 33 insertions(+), 0 deletions(-)
+ heat/__init__.py | 33 +++++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
 
 diff --git a/heat/__init__.py b/heat/__init__.py
 index 57e2d0f..d9df4ce 100644

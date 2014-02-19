@@ -6,8 +6,8 @@ Subject: [PATCH] Switch to using M2Crypto
 This patch uses M2Crypto instead of PyCrypto to perform encryption
 and decryption of user authentication information.
 ---
- heat/common/crypt.py |   18 +++++++++++-------
- requirements.txt     |    2 +-
+ heat/common/crypt.py | 18 +++++++++++-------
+ requirements.txt     |  2 +-
  2 files changed, 12 insertions(+), 8 deletions(-)
 
 diff --git a/heat/common/crypt.py b/heat/common/crypt.py

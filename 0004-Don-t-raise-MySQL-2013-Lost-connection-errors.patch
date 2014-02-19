@@ -1,0 +1,44 @@
+From 4651c1e80abf2bcda06c6a1a112bd3845db75896 Mon Sep 17 00:00:00 2001
+From: Ian McLeod <imcleod@redhat.com>
+Date: Wed, 5 Feb 2014 15:51:58 -0600
+Subject: [PATCH] Don't raise MySQL 2013 'Lost connection' errors
+
+cherry pick, including original commit message below from
+oslo-incubator commit:
+
+b4f72b2987d53bb434e3a833f06d70a2167f5efc
+
+Closes bug: 1275838
+
+Although this code error is part of the `ping_listener` tests, it was
+missing from the list of known - and ignored - connection errors.
+
+The code error 2013 refers to a connection lost during a query, see:
+https://dev.mysql.com/doc/refman/5.0/en/error-messages-client.html#error_cr_server_lost
+
+Without this error code, the session won't try to reconnect to mysql,
+which makes `max_retries` useless.
+
+(cherry picked from commit 472c1440677440e0888570926b49542ddf260724)
+
+Conflicts:
+	heat/openstack/common/db/sqlalchemy/session.py
+
+Change-Id: Id8a1c0665468b503b092c4f01ffd40e2be9c6fa9
+---
+ heat/openstack/common/db/sqlalchemy/session.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/heat/openstack/common/db/sqlalchemy/session.py b/heat/openstack/common/db/sqlalchemy/session.py
+index 1256e2d..9813d00 100644
+--- a/heat/openstack/common/db/sqlalchemy/session.py
++++ b/heat/openstack/common/db/sqlalchemy/session.py
+@@ -621,7 +621,7 @@ def _is_db_connection_error(args):
+     """Return True if error in connecting to db."""
+     # NOTE(adam_g): This is currently MySQL specific and needs to be extended
+     #               to support Postgres and others.
+-    conn_err_codes = ('2002', '2003', '2006')
++    conn_err_codes = ('2002', '2003', '2006', '2013')
+     for err_code in conn_err_codes:
+         if args.find(err_code) != -1:
+             return True

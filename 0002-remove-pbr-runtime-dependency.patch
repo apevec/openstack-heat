@@ -4,8 +4,8 @@ Date: Mon, 14 Oct 2013 14:30:34 -0400
 Subject: [PATCH] remove pbr runtime dependency
 
 ---
- heat/version.py |   12 ++++++++++--
- 1 files changed, 10 insertions(+), 2 deletions(-)
+ heat/version.py | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
 
 diff --git a/heat/version.py b/heat/version.py
 index a717606..8ea213a 100644
