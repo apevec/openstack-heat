@@ -410,7 +410,7 @@ fi
 
 
 %changelog
-* Tue Feb 19 2014 Jeff Peeler <jpeeler@redhat.com> 2013.2.2-1
+* Wed Feb 19 2014 Jeff Peeler <jpeeler@redhat.com> 2013.2.2-1
 - update to 2013.2.2
 
 * Fri Jan 03 2014 Pádraig Brady <pbrady@redhat.com> 2013.2.1-2
