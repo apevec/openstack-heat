@@ -1,4 +1,9 @@
 %global release_name havana
+%global project heat
+Source0:        http://tarballs.openstack.org/%{project}/%{project}-stable-%{release_name}.tar.gz
+%global devtag %(tar ztf %{SOURCE0} 2>/dev/null | head -1 | rev | cut -d. -f2 | rev)
+%global devrel %(tar ztf %{SOURCE0} 2>/dev/null | head -1 | rev | cut -d. -f3-5 | cut -d- -f1 | rev)
+
 %global release_letter rc
 %global milestone 2
 %global full_release heat-%{version}
@@ -7,12 +12,11 @@
 
 Name:		openstack-heat
 Summary:	OpenStack Orchestration (heat)
-Version:	2013.2.2
-Release:	1.0%{?dist}
+Version:	%{devrel}
+Release:	0.1.%{devtag}%{?dist}
 License:	ASL 2.0
 Group:		System Environment/Base
 URL:		http://www.openstack.org
-Source0:	https://launchpad.net/heat/%{release_name}/%{version}/+download/heat-%{version}.tar.gz
 Obsoletes:	heat < 7-9
 Provides:	heat
 
@@ -24,7 +28,7 @@ Source5:	openstack-heat-api-cloudwatch.init
 Source20:   heat-dist.conf
 
 #
-# patches_base=2013.2.2
+# patches_base=gerrit/stable/havana
 #
 Patch0001: 0001-Switch-to-using-M2Crypto.patch
 Patch0002: 0002-remove-pbr-runtime-dependency.patch
@@ -76,14 +80,15 @@ Requires: %{name}-api-cfn = %{version}-%{release}
 Requires: %{name}-api-cloudwatch = %{version}-%{release}
 
 %prep
-%setup -q -n %{full_release}
-
+%setup -q -c -T
+tar --strip-components=1 -zxf %{SOURCE0}
 %patch0001 -p1
 %patch0002 -p1
 %patch0003 -p1
 %patch0004 -p1
 sed -i s/REDHATHEATVERSION/%{version}/ heat/version.py
 sed -i s/REDHATHEATRELEASE/%{release}/ heat/version.py
+sed -i 's/^Version: .*/Version: %{version}/' PKG-INFO
 
 # Remove the requirements file so that pbr hooks don't add it
 # to distutils requires_dist config
