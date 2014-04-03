@@ -1,4 +1,4 @@
-From 13867367c67abd9d207aef97a001842899f36b30 Mon Sep 17 00:00:00 2001
+From d3600acd4cd79463377eedcc3a17a0fd9440a08c Mon Sep 17 00:00:00 2001
 From: Jeff Peeler <jpeeler@redhat.com>
 Date: Tue, 2 Apr 2013 18:08:48 -0400
 Subject: [PATCH] Adjust to handle parallel installed packages

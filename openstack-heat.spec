@@ -33,7 +33,6 @@ Source20:   heat-dist.conf
 Patch0001: 0001-Switch-to-using-M2Crypto.patch
 Patch0002: 0002-remove-pbr-runtime-dependency.patch
 Patch0003: 0003-Adjust-to-handle-parallel-installed-packages.patch
-Patch0004: 0004-Don-t-raise-MySQL-2013-Lost-connection-errors.patch
 
 BuildArch: noarch
 BuildRequires: git
@@ -85,7 +84,6 @@ tar --strip-components=1 -zxf %{SOURCE0}
 %patch0001 -p1
 %patch0002 -p1
 %patch0003 -p1
-%patch0004 -p1
 sed -i s/REDHATHEATVERSION/%{version}/ heat/version.py
 sed -i s/REDHATHEATRELEASE/%{release}/ heat/version.py
 sed -i 's/^Version: .*/Version: %{version}/' PKG-INFO
